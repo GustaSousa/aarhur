@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY CHEMICAL ROMANCE #2</title>
+
+  <style>
+    /* Reset total */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000; /* fundo externo */
+      display: flex;
+      justify-content: center;
+      overflow: hidden;           
+    }
+
+    /* Frame fixo do iPhone 13 */
+    .iphone-frame {
+      width: 390px;
+      height: 100vh;
+      background: #fff;
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative; /* ESSENCIAL */
+      overscroll-behavior: contain;
+
+    }
+
+    /* Header fixo */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Área de botões invisíveis */
+    .header-buttons {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 38%;
+      display: flex;
+    }
+
+    .header-buttons a {
+      width: 30%;
+      height: 100%;
+    }
+
+    /* Botões visíveis para teste */
+    .btn-left {
+      left: 0;
+      background: transparent;
+    }
+
+    .btn-right {
+      right: 0;
+      background: transparent;
+    }
+
+    /* Conteúdo principal */
+    .content img {
+      width: 100%;
+      display: block;
+    }
+
+    .clock {
+      position: absolute;
+      top: 372px;
+      left: 240px;
+
+      color: white;
+      font-size: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+
+      z-index: 5;
+      pointer-events: none; /* não interfere com swipe/cliques */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="iphone-frame">
+
+    <header>
+      <img src="header_um.png" alt="Header">
+
+      <!-- Botões sobre o header -->
+      <div class="header-buttons">
+        <a href="index.html" class="btn-left"></a>
+        <a href="index2.html" class="btn-right"></a>
+      </div>
+    </header>
+
+    <div class="clock" id="clock"></div>
+
+    <div class="content">
+      <img src="MCR_UM.png" alt="Conteúdo principal">
+    </div>
+
+  </div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
+  <script>
+    let startX = 0;
+    let startY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+
+      const diffX = startX - endX;
+      const diffY = Math.abs(startY - endY);
+
+      // swipe horizontal claro
+      if (diffX > 80 && diffY < 60) {
+        window.location.href = 'index2.html';
+      }
+    });
+  </script>
+
+</body>
+</html>
