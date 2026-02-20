@@ -90,6 +90,20 @@
       z-index: 5;
       pointer-events: none; /* não interfere com swipe/cliques */
     }
+
+    .gif-overlay {
+      position: absolute;
+      top: 139px;     /* de cima para baixo */
+      left: 70px;    /* da esquerda para a direita */
+      z-index: 4;     /* ajuste conforme a camada desejada */
+      pointer-events: none; /* não interfere com swipe/clique */
+    }
+
+    .gif-overlay img {
+      width: 252px;   /* DIMINUI AQUI */
+      height: auto; /* mantém proporção */
+      display: block;
+    }
   </style>
 </head>
 
@@ -108,6 +122,10 @@
     </header>
 
     <div class="clock" id="clock"></div>
+
+    <div class="gif-overlay">
+      <img src="gif_animado.gif" alt="">
+    </div>
 
     <div class="content">
       <img src="MCR_DOIS.png" alt="Conteúdo principal">
